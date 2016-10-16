@@ -1,0 +1,75 @@
+{% extends 'base.html.twig' %}
+
+
+{% block body %}
+<div>
+    <div class="row">
+        <div class="col-md-12 page-header">
+            <h1>Mum's: los mejores menús, ahora online!</h1>
+            <a class="collapsed" data-toggle="collapse" href="#ofertas">
+                <h4>Pssst! Échale un <span class="glyphicon glyphicon-eye-open"></span>  a nuestras ofertas</h4>
+            </a>
+            <div id="ofertas" class="collapse">
+                <ul>
+                    <li>3x2 en unidades del mismo producto</li>
+                    <li>20% de descuento en tu menú completo: primer plato, bebida y postre</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-12">
+            {% for product in products %}
+                {% embed 'product.html.twig' with {'product': product} only %}{% endembed %}
+            {% endfor %}
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-4">
+            <h3>Resumen de tu compra</h3>
+            <div id="shopping-cart-result">
+                {% embed 'cart.html.twig' with {'cart': cart} only %}{% endembed %}
+            </div>
+        </div>
+
+        <div class="col-sm-4">
+            <h3>Descuentos aplicables</h3>
+            Ninguno
+        </div>
+
+        <div class="col-sm-4">
+            <h3>TOTAL</h3>
+        </div>
+
+    </div>
+</div>
+
+
+{% endblock %}
+
+
+{% block javascripts %}
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('.add-item, .remove-item').click(function(event) {
+
+            var currentAnchor = $(this).closest('a');
+            var dataTarget = currentAnchor.data('target');
+            var shoppingCart = $('#shopping-cart-result');
+
+            $.ajax({
+                type: "POST",
+                url: dataTarget,
+                beforeSend: function() {
+                    shoppingCart.html('<span class="glyphicon glyphicon-refresh spinning"></span> Actualizando su compra...');
+                }
+
+            }).done(function(response) {
+                shoppingCart.html(response);
+            });
+        });
+    });
+</script>
+{% endblock %}
