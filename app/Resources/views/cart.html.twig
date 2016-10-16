@@ -1,5 +1,7 @@
-{% spaceless %}
-{% for product in cart %}
-    {% embed 'cartProduct.html.twig' with {'cartProduct': product} only %}{% endembed %}
-{% endfor %}
-{% endspaceless %}
+{% if cart|length == 0 %}
+    Sin productos en el carro
+{% else %}
+    {% for product in cart %}
+        {% embed 'cartProduct.html.twig' with {'cartProduct': product} only %}{% endembed %}
+    {% endfor %}
+{% endif %}

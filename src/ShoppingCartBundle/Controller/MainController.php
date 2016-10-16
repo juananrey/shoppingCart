@@ -36,9 +36,15 @@ class MainController extends Controller
     {
         $filter = $request->query->get('filter');
         $products = $this->productRepository->getAllProducts($filter);
-        $cart = $this->cartProcessor->loadProductsInformation();
 
-        return array('products' => $products, 'cart' => $cart);
+        $cart = $this->cartProcessor->loadShoppingCart();
+
+        return array(
+            'products' => $products,
+            'cart' => $cart['products'],
+            'discounts' => $cart['discounts'],
+            'totalPrice' => $cart['totalPrice']
+        );
     }
 
     /**
@@ -48,9 +54,9 @@ class MainController extends Controller
     public function addItemAction(Request $request, $productId)
     {
         $this->cartProductManager->addProduct($productId);
-        $cart = $this->cartProcessor->loadProductsInformation();
+        $cart = $this->cartProcessor->loadShoppingCart();
 
-        return array('cart' => $cart);
+        return array('cart' => $cart['products']);
     }
 
     /**
@@ -60,8 +66,8 @@ class MainController extends Controller
     public function removeItemAction(Request $request, $productId)
     {
         $this->cartProductManager->removeProduct($productId);
-        $cart = $this->cartProcessor->loadProductsInformation();
+        $cart = $this->cartProcessor->loadShoppingCart();
 
-        return array('cart' => $cart);
+        return array('cart' => $cart['products']);
     }
 }

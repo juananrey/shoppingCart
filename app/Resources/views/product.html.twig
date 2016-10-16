@@ -1,6 +1,6 @@
 <div class="col-md-4">
     <div class="well">
-        <h5 class="text-primary">{{ product.name }} ({{ product.price }}{{ '&euro;'|raw  }}/{{ product.isUnitary ? 'ud' : '100gr.' }})
+        <h5 class="text-primary">{{ product.name }} ({{ product.price }}&euro;/{{ product.isUnitary ? 'ud' : '100gr.' }})
             <a class="remove-item" href="javascript:void(0);" data-target="{{ path('remove_product', {'productId': product.id}) }}">
                 <span class="glyphicon glyphicon-minus remove-item-beauty"></span>
             </a>

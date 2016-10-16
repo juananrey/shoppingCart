@@ -1,0 +1,17 @@
+{% if discount.type == 'menuDiscount' %}
+    {% set product1 = discount.product1 %}
+    {% set product2 = discount.product2 %}
+    {% set product3 = discount.product3 %}
+    <div>
+        <strong>Descuento 20% en tu menú:</strong>  {{ product1.name }} + {{ product2.name }} + {{ product3.name }}
+        = <strong>{{ discount.totalDiscount }}&euro; menos!</strong>
+    </div>
+
+{% else %}
+    {% set product = discount.product %}
+    <div>
+        <strong>Descuento 3x2:</strong> {{ product.name }}({{ product.price }}&euro;/ud) &times; {{ discount.timesToApply }}
+        = <strong>{{ discount.totalDiscount }}&euro; menos!</strong>
+    </div>
+{% endif %}
+

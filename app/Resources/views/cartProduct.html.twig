@@ -1,10 +1,10 @@
 {% set quantity = cartProduct.quantity %}
 {% set totalPrice = cartProduct.totalPrice %}
-{% set product = cartProduct.object %}
+{% set product = cartProduct.product %}
 <div>
     {% if product.isUnitary %}
-        {{ quantity }} &times; {{ product.name }} ({{ product.price }}{{ '&euro;'|raw  }}/ud) = {{ totalPrice }}{{ '&euro;'|raw  }}
+        {{ quantity }} &times; {{ product.name }} ({{ product.price }}&euro;/ud) = {{ totalPrice }}&euro;
     {% else %}
-        {{ quantity }} &times; {{ product.name }} ({{ product.price }}{{ '&euro;'|raw  }}/100gr) = {{ totalPrice }}{{ '&euro;'|raw  }}
+        {{ quantity }} &times; {{ product.name }} ({{ product.price }}&euro;/100gr) = {{ totalPrice }}&euro;
     {% endif %}
 </div>

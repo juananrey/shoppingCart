@@ -1,0 +1,7 @@
+{% if discounts|length == 0 %}
+    Sin descuentos aplicables
+{% else %}
+    {% for discount in discounts %}
+        {% embed 'discount.html.twig' with {'discount': discount} only %}{% endembed %}
+    {% endfor %}
+{% endif %}
