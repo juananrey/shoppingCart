@@ -1,7 +1,8 @@
 Shopping cart
 ========================
 
-Pick some products and add / delete them
+Pick some products and add / delete them. Made with <3 using [Symfony3](https://symfony.com/) 
+and [Bootstrap](http://getbootstrap.com/) 
 
 Requirements
 ------------
@@ -28,3 +29,7 @@ Just use the built-in web server:
 ```bash
 $ cd shoppingCart/
 $ php bin/console server:start
+```
+
+This command will start a web server for the Symfony application. Now you can
+access the application in your browser at <http://localhost:8000>.
