@@ -6,6 +6,9 @@ use ShoppingCartBundle\Entity\Product;
 use ShoppingCartBundle\Entity\ProductRepository;
 use Symfony\Component\HttpFoundation\Session\Attribute\AttributeBagInterface;
 
+/*
+ * Responsible for processing prices and products along the cart
+ */
 class ShoppingCartProcessor
 {
     const MENU_DISCOUNT_PERCENTAGE = 20;
@@ -49,7 +52,11 @@ class ShoppingCartProcessor
 
     public function loadShoppingCartDiscounts($products)
     {
-        $discounts = array_merge($this->applyOffer_Get3Pay2($products), $this->applyOffer_GetMenuDiscount($products));
+        $discounts = array_merge(
+            $this->applyOffer_get3Pay2($products),
+            $this->applyOffer_getMenuDiscount($products)
+        );
+
         return $discounts;
     }
 
@@ -72,7 +79,7 @@ class ShoppingCartProcessor
         return $productsTotalPrice - $discountsTotalPrice;
     }
 
-    private function applyOffer_Get3Pay2($products)
+    private function applyOffer_get3Pay2($products)
     {
         $discounts = [];
         foreach($products as $productId => $value) {
@@ -92,7 +99,7 @@ class ShoppingCartProcessor
         return $discounts;
     }
 
-    private function applyOffer_GetMenuDiscount($products)
+    private function applyOffer_getMenuDiscount($products)
     {
         $productsByType = $this->getProductsGroupedByType($products);
         $menuDiscounts = $this->getMenuDiscounts($productsByType);

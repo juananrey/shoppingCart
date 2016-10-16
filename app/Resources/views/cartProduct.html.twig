@@ -3,8 +3,8 @@
 {% set product = cartProduct.product %}
 <div>
     {% if product.isUnitary %}
-        {{ quantity }} &times; {{ product.name }} ({{ product.price }}&euro;/ud) = {{ totalPrice }}&euro;
+        {{ quantity }} &times; {{ product.name }} ({{ product.price }}&euro;/ud) = <strong>{{ totalPrice }}&euro;</strong>
     {% else %}
-        {{ quantity }} &times; {{ product.name }} ({{ product.price }}&euro;/100gr) = {{ totalPrice }}&euro;
+        {{ quantity }} &times; {{ product.name }} ({{ product.price }}&euro;/100gr) = <strong>{{ totalPrice }}&euro;</strong>
     {% endif %}
 </div>
