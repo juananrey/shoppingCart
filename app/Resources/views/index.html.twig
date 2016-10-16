@@ -26,26 +26,8 @@
         </div>
     </div>
 
-    <div class="row">
-        <div class="col-sm-4">
-            <h3>Resumen de tu compra</h3>
-            <div id="shopping-cart-result">
-                {% embed 'cart.html.twig' with {'cart': cart} only %}{% endembed %}
-            </div>
-        </div>
-
-        <div class="col-sm-4">
-            <h3>Descuentos aplicables</h3>
-            <div id="shopping-cart-discounts">
-                {% embed 'discounts.html.twig' with {'discounts': discounts} only %}{% endembed %}
-            </div>
-        </div>
-
-        <div class="col-sm-4">
-            <h3>TOTAL</h3>
-            <h4>{{ totalPrice }}&euro;</h4>
-        </div>
-
+    <div class="row" id="shopping-cart-result">
+        {% embed 'cart.html.twig' %}{% endembed %}
     </div>
 </div>
 

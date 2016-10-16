@@ -1,7 +1,18 @@
-{% if cart|length == 0 %}
-    Sin productos en el carro
-{% else %}
-    {% for product in cart %}
-        {% embed 'cartProduct.html.twig' with {'cartProduct': product} only %}{% endembed %}
-    {% endfor %}
-{% endif %}
+<div class="col-sm-4">
+    <h3>Resumen de tu compra</h3>
+    <div>
+        {% embed 'cartProducts.html.twig' with {'cart': cart} only %}{% endembed %}
+    </div>
+</div>
+
+<div class="col-sm-4">
+    <h3>Descuentos aplicables</h3>
+    <div>
+        {% embed 'discounts.html.twig' with {'discounts': discounts} only %}{% endembed %}
+    </div>
+</div>
+
+<div class="col-sm-4">
+    <h3>TOTAL</h3>
+    <h4>{{ totalPrice }}&euro;</h4>
+</div>

@@ -36,7 +36,6 @@ class MainController extends Controller
     {
         $filter = $request->query->get('filter');
         $products = $this->productRepository->getAllProducts($filter);
-
         $cart = $this->cartProcessor->loadShoppingCart();
 
         return array(
@@ -56,7 +55,11 @@ class MainController extends Controller
         $this->cartProductManager->addProduct($productId);
         $cart = $this->cartProcessor->loadShoppingCart();
 
-        return array('cart' => $cart['products']);
+        return array(
+            'cart' => $cart['products'],
+            'discounts' => $cart['discounts'],
+            'totalPrice' => $cart['totalPrice']
+        );
     }
 
     /**
@@ -68,6 +71,10 @@ class MainController extends Controller
         $this->cartProductManager->removeProduct($productId);
         $cart = $this->cartProcessor->loadShoppingCart();
 
-        return array('cart' => $cart['products']);
+        return array(
+            'cart' => $cart['products'],
+            'discounts' => $cart['discounts'],
+            'totalPrice' => $cart['totalPrice']
+        );
     }
 }
