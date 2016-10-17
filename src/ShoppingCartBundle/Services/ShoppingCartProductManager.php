@@ -2,7 +2,7 @@
 
 namespace ShoppingCartBundle\Services;
 
-use Symfony\Component\HttpFoundation\Session\SessionInterface;
+use ShoppingCartBundle\Entity\ShoppingCart;
 
 /*
  * Responsible for adding and remove items into our cart
@@ -11,7 +11,7 @@ class ShoppingCartProductManager
 {
     private $shoppingCart;
 
-    public function __construct(SessionInterface $shoppingCart)
+    public function __construct(ShoppingCart $shoppingCart)
     {
         $this->shoppingCart = $shoppingCart;
     }

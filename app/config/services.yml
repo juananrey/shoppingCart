@@ -10,10 +10,14 @@ services:
         factory: ["@doctrine.orm.entity_manager", getRepository]
         arguments: ["ShoppingCartBundle:Product"]
 
+    entity.shopping_cart:
+        class: ShoppingCartBundle\Entity\ShoppingCart
+        arguments: ["@session"]
+
     service.shopping_cart_product_manager:
         class: ShoppingCartBundle\Services\ShoppingCartProductManager
-        arguments: ["@session"]
+        arguments: ["@entity.shopping_cart"]
 
     service.shopping_cart_processor:
         class: ShoppingCartBundle\Services\ShoppingCartProcessor
-        arguments: ["@session", "@repository.product"]
+        arguments: ["@entity.shopping_cart", "@repository.product"]

@@ -4,7 +4,7 @@ namespace ShoppingCartBundle\Services;
 
 use ShoppingCartBundle\Entity\Product;
 use ShoppingCartBundle\Entity\ProductRepository;
-use Symfony\Component\HttpFoundation\Session\SessionInterface;
+use ShoppingCartBundle\Entity\ShoppingCart;
 
 /*
  * Responsible for processing prices and products along the cart
@@ -16,7 +16,7 @@ class ShoppingCartProcessor
     private $shoppingCart;
     private $productRepository;
 
-    public function __construct(SessionInterface $shoppingCart, ProductRepository $productRepository)
+    public function __construct(ShoppingCart $shoppingCart, ProductRepository $productRepository)
     {
         $this->shoppingCart = $shoppingCart;
         $this->productRepository = $productRepository;
