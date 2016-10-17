@@ -10,19 +10,10 @@ services:
         factory: ["@doctrine.orm.entity_manager", getRepository]
         arguments: ["ShoppingCartBundle:Product"]
 
-    attribute_bag.shopping_cart:
-        class: Symfony\Component\HttpFoundation\Session\Attribute\NamespacedAttributeBag
-        calls:
-            - [setName, ["products"]]
-
     service.shopping_cart_product_manager:
         class: ShoppingCartBundle\Services\ShoppingCartProductManager
-        arguments: ["@attribute_bag.shopping_cart"]
+        arguments: ["@session"]
 
     service.shopping_cart_processor:
         class: ShoppingCartBundle\Services\ShoppingCartProcessor
-        arguments: ["@attribute_bag.shopping_cart", "@repository.product"]
-
-    session:
-        class: Symfony\Component\HttpFoundation\Session\Session
-        arguments: ["@session.storage", "@attribute_bag.shopping_cart", "@session.flash_bag"]
+        arguments: ["@session", "@repository.product"]
