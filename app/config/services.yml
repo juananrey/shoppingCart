@@ -21,3 +21,22 @@ services:
     service.shopping_cart_processor:
         class: ShoppingCartBundle\Services\ShoppingCartProcessor
         arguments: ["@entity.shopping_cart", "@repository.product"]
+
+
+    redis_cache_service:
+        class: Doctrine\Common\Cache\RedisCache
+        calls:
+            - method: setRedis
+              arguments:
+                - '@redis'
+
+    redis:
+        class: Redis
+        public: false
+        calls:
+            - method: connect
+              arguments:
+                - localhost
+            - method: select
+              arguments:
+                - 13 # change database by index

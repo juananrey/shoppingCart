@@ -16,9 +16,11 @@ class ProductRepository extends EntityRepository
 
     public function getProductById($productId)
     {
-        $query = $this->_em->createQuery('SELECT p FROM ShoppingCartBundle:Product p WHERE p.id = :productId');
+        $query = $this->_em->createQuery('SELECT p FROM ShoppingCartBundle:Product p WHERE p.id LIKE :productId');
         $query->setParameter('productId', $productId);
 
+        // Change this flag to notice the huuuuge performance change...
+        $query->useResultCache(true, 3600, 'query_performance_crazy_difference');
         return $query->getSingleResult();
     }
 }

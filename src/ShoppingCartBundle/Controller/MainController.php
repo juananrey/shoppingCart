@@ -45,6 +45,20 @@ class MainController extends Controller
         );
     }
 
+
+    /**
+     * @Route("/foo", name="lololo")
+     */
+    public function fooAction(Request $request)
+    {
+        $milliseconds = (microtime(true) * 1000);
+
+        $products = $this->productRepository->getProductById(4080);
+        $milliseconds = (microtime(true) * 1000) - $milliseconds;
+
+        return new JsonResponse(['time_spent' => $milliseconds]);
+    }
+
     /**
      * @Route("/products/add/{productId}", name="add_product")
      * @Template("cart.html.twig")
